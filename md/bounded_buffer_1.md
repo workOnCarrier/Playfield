@@ -1,6 +1,3 @@
-Sure! Here’s a **simulated interview Q\&A session** (10 interactions) based on the topic: **Blocking Bounded Queue** (with a concurrency & multithreading focus) as might be asked by firms like Two Sigma, HRT, IMC, Goldman Sachs, Optiver, or JPMorgan Athena teams.
-
----
 
 ### **Context**
 
@@ -180,13 +177,6 @@ I’d create:
 
 ---
 
-
-Sure! Below is a **complete C++ solution** with a header/implementation and a separate test file.
-It uses `std::thread`, `std::mutex`, and `std::condition_variable`.
-The test spawns multiple producers and consumers to validate the **blocking bounded queue**.
-
----
-
 ### 📂 **File 1: `BlockingBoundedQueue.h`**
 
 ```cpp
@@ -332,16 +322,6 @@ g++ -std=c++17 -pthread main_test.cpp -o test_queue
 
 ---
 
-If you want:
-✅ I can also provide a `CMakeLists.txt`
-✅ Or enhance with graceful shutdown, timed waits, or exceptions.
-Just let me know!
----
-Great follow‑up!
-In a **blocking bounded queue** implementation like the one above, we typically use `notify_one()` instead of `notify_all()` because of **efficiency** and **fairness considerations**—but let’s go deeper:
-
----
-
 ### ✅ **Why `notify_one()` is enough and often preferred**
 
 1. **Only one waiter can make progress at a time**
@@ -389,5 +369,3 @@ So `notify_one()` is the typical choice for producer-consumer queues.
 👉 `notify_all()` would be used if you intentionally want to wake all waiting threads for a state change that affects everyone.
 
 ---
-
-If you’d like, I can modify the test code to demonstrate the difference (e.g., switching to `notify_all` and adding debug prints to show spurious wakeups). Let me know!
