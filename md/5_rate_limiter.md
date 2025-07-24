@@ -1,7 +1,3 @@
-Sure! Below is a **simulated interview** (10 interactions) for a **Concurrency & Multithreading Rate Limiter** problem, as might be asked in interviews at Stripe, Robinhood, IMC, or Citadel Securities.
-
----
-
 ### 🎯 **Interview Problem:**
 
 > **Design and implement a thread-safe Rate Limiter that allows at most `N` requests per `T` milliseconds.**
@@ -314,9 +310,6 @@ a) A single-threaded latency test
 b) A stress test with many concurrent threads  
 c) A memory usage test  
 d) A test that disables thread synchronization  
-
----
-Great job! Let's review your answers to the 10 multiple-choice questions about the Rate Limiter and concurrency concepts. I'll provide feedback for each question, confirm the correct answer, and explain any discrepancies.
 
 ---
 
