@@ -378,4 +378,3 @@ Great job! Let's review your answers to the 10 multiple-choice questions about t
 - **Score**: 9/10  
 - **Correct Answers**: Q1, Q2, Q3, Q4, Q6, Q7, Q8, Q9, Q10  
 - **Incorrect Answer**: Q5  
-- **Explanation for Q5**: You selected "guarantees fairness among threads," but the context emphasizes that lazy refill avoids a dedicated timer thread. Fairness requires additional mechanisms like queuing, as discussed later.
