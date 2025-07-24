@@ -369,3 +369,93 @@ So `notify_one()` is the typical choice for producer-consumer queues.
 👉 `notify_all()` would be used if you intentionally want to wake all waiting threads for a state change that affects everyone.
 
 ---
+
+
+
+---
+
+### **Validation of Your Answers**
+
+#### **Question 1**
+**Question**: What is the primary purpose of a **blocking bounded queue** in a multithreaded environment?  
+- **Your Answer**: B) To provide thread-safe access with blocking behavior when full or empty  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: Interaction 1 describes a blocking bounded queue as a thread-safe data structure that blocks on `enqueue` when full and `dequeue` when empty, ensuring safe concurrent access.
+
+#### **Question 2**
+**Question**: In the provided implementation, what role does the `std::condition_variable` play in the `enqueue` method?  
+- **Your Answer**: B) It signals consumers when an item is added  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: In the `enqueue` method (Interaction 5), `not_empty.notify_one()` signals a waiting consumer that an item is available after it’s added to the queue.
+
+#### **Question 3**
+**Question**: Why is a **circular buffer** used in the BlockingBoundedQueue implementation?  
+- **Your Answer**: B) To efficiently reuse memory without shifting elements  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: Interaction 3 mentions using a circular buffer for storage, which reuses memory efficiently by wrapping indices (`head` and `tail`) around the fixed capacity, as seen in the code.
+
+#### **Question 4**
+**Question**: What concurrency issue is avoided by using a predicate with `condition_variable::wait`?  
+- **Your Answer**: C) Race conditions on the mutex  
+- **Correct Answer**: B) Lost wakeups  
+- **Status**: Incorrect  
+- **Explanation**: Interaction 9 explains that using a predicate with `condition_variable::wait` (e.g., `not_full.wait(lock, [this]{ return count < capacity; })`) prevents **lost wakeups** by re-checking the condition after a thread is woken, avoiding missed signals or spurious wakeups. Race conditions on the mutex are prevented by the mutex itself, not the predicate.
+
+#### **Question 5**
+**Question**: In a trading system, how might a blocking bounded queue be used?  
+- **Your Answer**: B) To buffer market data events between IO and processing threads  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: Interaction 1 states that a blocking bounded queue can buffer market data events in a trading system, controlling memory pressure and providing backpressure.
+
+#### **Question 6**
+**Question**: What happens if multiple producers are waiting on `not_full` and a consumer dequeues an item?  
+- **Your Answer**: B) Only one producer is woken up  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: Interaction 7 and the "Why `notify_one()` is enough" section explain that `not_full.notify_one()` wakes one waiting producer when space becomes available, avoiding the thundering-herd effect.
+
+#### **Question 7**
+**Question**: Why is busy-waiting (spinning in a loop) undesirable in most cases for a blocking queue?  
+- **Your Answer**: B) It consumes CPU cycles unnecessarily  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: Interaction 8 notes that busy-waiting wastes CPU cycles, which is inefficient, especially in high-frequency trading where blocking semantics are preferred.
+
+#### **Question 8**
+**Question**: In the test case (`main_test.cpp`), what is the purpose of the `sleep_for` calls in the producer and consumer threads?  
+- **Your Answer**: B) To simulate unpredictable scheduling and test blocking behavior  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: Interaction 10 and the test case description explain that `sleep_for` calls simulate unpredictable scheduling to stress-test the queue’s blocking behavior.
+
+#### **Question 9**
+**Question**: When might you use `notify_all()` instead of `notify_one()` in a blocking queue?  
+- **Your Answer**: B) When shutting down the system and all threads should exit  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: The "When would you use `notify_all`" section states that `notify_all` is used when a state change, like system shutdown, requires all waiting threads to wake and exit.
+
+#### **Question 10**
+**Question**: What is a key benefit of using `notify_one()` in high-performance systems like trading platforms?  
+- **Your Answer**: B) It reduces CPU contention and context switches  
+- **Correct Answer**: B  
+- **Status**: Correct  
+- **Explanation**: The "Why `notify_one()` is enough" section highlights that `notify_one()` minimizes unnecessary context switches and CPU contention, critical for high-performance systems.
+
+---
+
+### **Score**
+**9/10 Correct**
+
+You did an excellent job, getting 9 out of 10 questions correct! The only mistake was on Question 4, where you selected **C) Race conditions on the mutex** instead of **B) Lost wakeups**. The explanation above clarifies that the predicate in `condition_variable::wait` specifically addresses lost wakeups, while the mutex handles race conditions.
+
+---
+
+### **Next Steps**
+- If you’d like a deeper explanation of Question 4 or any other topic (e.g., lost wakeups vs. race conditions), let me know!
+- Would you like another quiz to practice more (e.g., with different question types or focusing on specific areas like condition variables or trading system applications)?
+- Alternatively, I can provide a coding challenge or further test cases related to the blocking bounded queue. Let me know your preference!
