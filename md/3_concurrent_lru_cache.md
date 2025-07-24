@@ -390,9 +390,6 @@ Concurrent test size: 100
     d) Storing all keys in a sorted array  
 
 ---
-Great job providing your answers! Below, I'll give feedback on each of your choices, explaining whether they are correct and providing reasoning to clarify the concepts. I'll keep it concise but thorough to ensure you understand the rationale behind each answer.
-
----
 
 ### Feedback on Your Answers
 
@@ -459,5 +456,3 @@ Great job providing your answers! Below, I'll give feedback on each of your choi
 ### Summary
 **Score**: 9/10  
 You did an excellent job, getting 9 out of 10 questions correct! Your understanding of LRU cache design, thread-safety mechanisms, and their trade-offs is strong. The only misstep was on question 8, where the key insight is that get operations in an LRU cache modify the recency order, requiring an exclusive lock even with a read-write lock. This is a subtle but important detail in concurrent LRU cache design.  
-
-If you’d like further clarification on question 8 or any other topic, or if you want additional practice questions, let me know!
