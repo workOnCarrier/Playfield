@@ -17,8 +17,8 @@
 * Circular buffer for storage
 * Mutex to protect shared state
 * Two condition variables:
-  1. `not_full` for producers
-  2. `not_empty` for consumers
+    1. `not_full` for producers
+    2. `not_empty` for consumers
 
 ##  What data members are in the BlockingBoundedQueue class?
 
@@ -26,8 +26,8 @@
 * Indexes: `head`, `tail`, and `count`
 * `capacity` for max size
 * Synchronization:
-  1. `std::mutex mtx`
-  2. `std::condition_variable not_full`, `not_empty`
+    1. `std::mutex mtx`
+    2. `std::condition_variable not_full`, `not_empty`
 
 ##  How is `enqueue` implemented in C++?
 
@@ -111,3 +111,8 @@ class BlockingBoundedQueue:
 * When shutting down the system (all threads should wake up)
 * When a condition unblocks many waiters
 * Useful in barrier-like synchronization
+
+
+## How to create anki from this markdown file
+
+* mdanki 01_bounder_buffer_anki.md 01_bounder_buffer_anki.apkg --deck "Mohan::CodeInterview::SystemDesign::BoundedBuffer"
