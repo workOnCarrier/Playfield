@@ -367,7 +367,3 @@ d) A test that disables thread synchronization
 
 ---
 
-### Summary
-- **Score**: 9/10  
-- **Correct Answers**: Q1, Q2, Q3, Q4, Q6, Q7, Q8, Q9, Q10  
-- **Incorrect Answer**: Q5  

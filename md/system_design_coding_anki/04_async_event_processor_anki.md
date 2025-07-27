@@ -104,6 +104,8 @@
 * Below is a Python solution with example usage
 
 <xaiArtifact artifact_id="a88879d7-061a-4c8f-9373-89a1d236050d" artifact_version_id="d1354302-974b-4c7b-9af9-89ae172ad1a0" title="async_event_processor.py" contentType="text/python">
+
+```python
 import threading
 import queue
 import time
@@ -178,7 +180,7 @@ if __name__ == "__main__":
 
     print(f"Processed {len(processed_events)} events")
     print(f"Events: {processed_events[:5]}...")  # Print first 5 events
-
+```
 
 ## How to create anki from this markdown file
 
