@@ -24,6 +24,7 @@
 * Sliding window counter.
 
 ## Python program for Token buckets
+[Understanding Rate Limiting with Token Bucket Algorithm (Medium)](https://medium.com/@mdfirozmia321/understanding-rate-limiting-with-token-bucket-algorithm-a-practical-implementation-in-go-3c44719d7dd2)
 
 ```
 python
