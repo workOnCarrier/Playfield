@@ -6,5 +6,16 @@
 
 ## What is the use of rate limiter ?
 * Denial of Service
-* Provide resource key API by reducing 
+* Provide resource key API by reducing
+* Client side rate limiter helps with preventing unexpected cost by using paid services.
+
+## What is the expectation of rate limiter?
+* Accurately limit excessive requests.
+* Low latency - should not slowdown HTTP requests.
+* Use less resource like memory and cpu cycle.
+* Distributed rate limitor, used accross multiple systems.
+* Exception handling - show exact error for the clients.
+
+## What are the different algorithms used in Rate limiter?
+
 
