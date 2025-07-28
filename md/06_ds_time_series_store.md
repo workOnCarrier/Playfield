@@ -163,7 +163,7 @@ It uses a **sorted `std::vector` with binary search**, supports:
 
 ## 📂 **File 1: time\_series\_store.h**
 
-```cpp
+```cpp:n
 #pragma once
 #include <vector>
 #include <algorithm>
