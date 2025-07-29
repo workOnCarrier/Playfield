@@ -67,3 +67,54 @@ if __name__ == "__main__":
     bucket = TokenBucket(capacity=5, refill_rate=1)  # 5 max tokens, 1 token added per second
     simulate_requests(bucket, total_requests=10, interval=0.5)
 ```
+
+## python program for leaky bucket
+
+```
+import threading
+import time
+import random
+
+class LeakyBucketRateLimiter:
+    def __init__(self, capacity, leak_rate_per_second):
+        self.capacity = capacity                # Maximum bucket size
+        self.leak_rate = leak_rate_per_second   # Leak rate (requests/second)
+        self.current_water = 0                  # Current water level (number of requests)
+        self.lock = threading.Lock()
+
+        # Start a background thread to leak requests
+        leak_thread = threading.Thread(target=self._leak, daemon=True)
+        leak_thread.start()
+
+    def _leak(self):
+        while True:
+            time.sleep(1 / self.leak_rate)
+            with self.lock:
+                if self.current_water > 0:
+                    self.current_water -= 1
+                    print(f"Leaked 1 request. Remaining in bucket: {self.current_water}")
+
+    def allow_request(self):
+        with self.lock:
+            if self.current_water < self.capacity:
+                self.current_water += 1
+                print(f"Accepted request. Bucket: {self.current_water}/{self.capacity}")
+                return True
+            else:
+                print(f"Rejected request. Bucket is full: {self.current_water}/{self.capacity}")
+                return False
+
+# Simulating random incoming requests
+def simulate_requests(rate_limiter):
+    while True:
+        time.sleep(random.uniform(0.1, 0.5))  # Random interval between requests
+        rate_limiter.allow_request()
+
+if __name__ == "__main__":
+    limiter = LeakyBucketRateLimiter(capacity=5, leak_rate_per_second=1)
+    simulate_thread = threading.Thread(target=simulate_requests, args=(limiter,))
+    simulate_thread.start()
+
+    # Let it run for 15 seconds
+    time.sleep(15)
+```
