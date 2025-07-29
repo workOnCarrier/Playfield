@@ -82,16 +82,72 @@
 * Apply rate limiting to prevent abuse
 * Validate inputs to avoid injection attacks
 
-## What is Sequential Event Driven Architecture?
+## What is staged Event Driven Architecture?
 
 * Design pattern processing events in a specific order
 * Uses a single-threaded or sequentially consistent event loop
 * Ensures predictable outcomes, avoids race conditions
 * Used in systems requiring strict ordering, like trading or workflows
 
-## What are the drawbacks of Sequential Event Driven Architecture?
+## What are the drawbacks of staged Event Driven Architecture?
 
-* Limited scalability due to sequential processing bottlenecks
+* Limited scalability due to staged processing bottlenecks
 * Can be slower for high-throughput workloads
 * Mitigated by sharding event streams or batching
 * Requires careful design to avoid queue
+
+
+## What is TWAP and how is it used in trading?
+* Time-Weighted Average Price calculates the average price of a security over a period, weighted by time
+* Used in algorithmic trading to execute large orders gradually, minimizing market impact
+* Ensures trades align with the market’s average price, avoiding distortions from price spikes
+* **Example**: Splitting a large crypto order into smaller trades over an hour to achieve a stable average price
+
+## How do you calculate TWAP with an example?
+* Sample prices at regular intervals, sum them, and divide by the number of samples
+* For unequal intervals, weight prices by time duration
+* **Example**: Prices over 5 minutes: $100.50, $101.00, $100.80, $101.20, $100.90 → TWAP = $504.40 / 5 = $100.88
+* **Example with weights**: $50.00 (3 min), $51.00 (4 min), $50.50 (3 min) → TWAP = (150.00 + 204.00 + 151.50) / 10 = $50.55
+
+## What are challenges in implementing a TWAP algorithm?
+* Handling missing or irregular price data
+* Managing execution during high volatility or low liquidity
+* Ensuring minimal market impact while meeting time constraints
+* **Example**: Pausing TWAP execution during a price spike and resuming when the market stabilizes to avoid skewed averages
+
+## What is a Total Return Swap (TRS) and its role in financial markets?
+* A derivative where one party pays the total return (price changes + income) of an asset, and the other pays a fixed/floating rate
+* Used for gaining asset exposure without ownership, hedging, or risk management
+* Common in commodities, equities, and credit markets
+* **Example**: A hedge fund gains exposure to a stock’s returns without owning it, paying SOFR + 2% to a bank
+
+## How do you calculate TRS financial flows with an example?
+* Total return = Price appreciation/depreciation + Income (e.g., dividends)
+* Fixed leg = Notional × (Interest rate + Spread)
+* **Example**: $1M notional, stock price rises from $100 to $110, $1/share dividend. Total return = $110,000. Hedge fund pays $50,000 (SOFR + 2%), receives $60,000 net.
+* **Alternative**: If stock falls to $90, total return = -$90,000. Hedge fund pays $140,000 net (fixed leg + loss).
+
+## What are challenges in implementing TRS in a risk system?
+* Modeling accurate total return calculations for volatile assets
+* Handling counterparty credit risk and collateral requirements
+* Integrating with existing risk pipelines for real-time exposure tracking
+* **Example**: Adding TRS cash flows to a C++ risk engine, stress-testing for commodity price drops to meet Basel III requirements
+
+## What is Value at Risk (VaR) and its role in financial risk management?
+* VaR estimates the maximum potential loss of a portfolio over a time period at a confidence level
+* Used to assess market risk, comply with regulations (e.g., Basel III), and set capital requirements
+* Methods include historical, parametric, and Monte Carlo simulation
+* **Example**: A 95% 1-day VaR of $20,000 means a 5% chance of losing more than $20,000 in a day
+
+## How do you calculate historical VaR with an example?
+* Collect historical portfolio returns, sort in ascending order, select the percentile for the confidence level
+* Multiply the return at the percentile by the portfolio value
+* **Example**: For $1M portfolio, 100 daily returns, 95% confidence, 5th worst return = -1.8%. VaR = $1M × 1.8% = $18,000
+* **Challenge**: Ensuring sufficient, clean historical data for accurate estimation
+
+## How do you calculate standard deviation for parametric VaR with an example?
+* Compute mean return, calculate variance as average of squared deviations, take square root for standard deviation
+* Parametric VaR = Portfolio Value × z-score × Standard Deviation
+* **Example**: Returns [-1.5%, 0.8%, -0.3%, 2.1%, -2.0%], mean = -0.18%, std dev ≈ 1.675%. For 95% VaR, $1M × 1.645 × 1.675% ≈ $27,554
+* **Challenge**: Assumes normal distribution, which may not hold for extreme market events
+
