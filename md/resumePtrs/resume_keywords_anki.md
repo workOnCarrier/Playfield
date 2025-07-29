@@ -112,7 +112,6 @@
 ## What are challenges in implementing a TWAP algorithm?
 * Handling missing or irregular price data
 * Managing execution during high volatility or low liquidity
-* Ensuring minimal market impact while meeting time constraints
 * **Example**: Pausing TWAP execution during a price spike and resuming when the market stabilizes to avoid skewed averages
 
 ## What is a Total Return Swap (TRS) and its role in financial markets?
@@ -150,4 +149,23 @@
 * Parametric VaR = Portfolio Value × z-score × Standard Deviation
 * **Example**: Returns [-1.5%, 0.8%, -0.3%, 2.1%, -2.0%], mean = -0.18%, std dev ≈ 1.675%. For 95% VaR, $1M × 1.645 × 1.675% ≈ $27,554
 * **Challenge**: Assumes normal distribution, which may not hold for extreme market events
+
+## What is limit management and its role in a bank?
+* Tracks and enforces risk exposure limits to ensure compliance with regulatory and internal policies
+* Covers market risk (e.g., VaR), credit risk, and position limits across asset classes
+* Critical for regulatory compliance (e.g., Basel III) and preventing financial losses
+* **Example**: A system tracks a $5M VaR limit for a commodities desk, alerting traders at 96% utilization
+
+## How is limit management implemented in a bank’s trading system?
+* Uses C++ for high-performance calculations, databases (e.g., MSSQL) for limit storage
+* Integrates with FIX for trade data, risk engines for VaR, and reporting for compliance
+* Real-time alerts for breaches, with escalation to risk teams
+* **Example**: Redesigned C++ components to use MSSQL, improving scalability for multi-asset limit tracking
+
+## What are challenges in implementing limit management systems?
+* Ensuring data quality and low-latency processing for real-time monitoring
+* Aligning with evolving regulations like Basel III
+* Coordinating across business, QA, and RTB teams for delivery
+
+
 

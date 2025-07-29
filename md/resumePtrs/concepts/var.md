@@ -83,8 +83,6 @@ Standard deviation measures the volatility of portfolio returns, often used in t
 
 ### Markdown for Anki (mdanki Format)
 
-
-
 ## What is Value at Risk (VaR) and its role in financial risk management?
 * VaR estimates the maximum potential loss of a portfolio over a time period at a confidence level
 * Used to assess market risk, comply with regulations (e.g., Basel III), and set capital requirements
@@ -105,4 +103,3 @@ Standard deviation measures the volatility of portfolio returns, often used in t
 
 
 
-This markdown file is formatted for mdanki and can be imported into Anki for revision. Let me know if you need further clarification or additional VaR examples!
