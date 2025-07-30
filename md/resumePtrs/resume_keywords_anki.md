@@ -167,5 +167,24 @@
 * Aligning with evolving regulations like Basel III
 * Coordinating across business, QA, and RTB teams for delivery
 
+## What is Monte Carlo simulation and its role in financial systems?
+* A technique to model uncertainty by generating random scenarios based on probability distributions
+* Used for pricing derivatives, calculating VaR, and stress testing in risk systems
+* Critical for Basel III-compliant risk calculations in banks
+* **Example**: Simulating 10,000 price paths for a stock to estimate 95% VaR
+
+## How do you implement Monte Carlo for VaR with an example?
+* Define model, specify input distributions, generate random scenarios, compute outcomes, and aggregate results
+* Use C++ with random number generators (e.g., Mersenne Twister) for simulations
+* **Example**: For $1M portfolio, simulate 10,000 daily returns (N(0, 0.02)), sort losses, find 5th percentile → VaR = $32,500
+* **Optimization**: Use parallel processing (OpenMP) and variance reduction (antithetic variates)
+
+## What are challenges in implementing Monte Carlo in risk systems?
+* High computational cost requiring parallelization or GPU acceleration
+* Ensuring accurate input distributions and correlations
+* Balancing simulation count with runtime constraints
+* **Example**: Optimizing a C++ Monte Carlo VaR engine with OpenMP for sub-millisecond performance in a commodities portfolio
+
+
 
 
