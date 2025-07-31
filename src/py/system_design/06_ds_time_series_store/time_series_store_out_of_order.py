@@ -1,10 +1,12 @@
 
 import threading
 import bisect
+from sortedcontainers import SortedDict
 
 class TimeSeriesStore:
     def __init__(self):
         self.points = []  # List of (timestamp, value) tuples
+        self.buffer = SortedDict()  # Buffer for out-of-order inserts
         self.lock = threading.Lock()
 
     def insert(self, timestamp, value):
@@ -12,12 +14,18 @@ class TimeSeriesStore:
             if not self.points or timestamp >= self.points[-1][0]:
                 self.points.append((timestamp, value))
             else:
-                # Binary insert for out-of-order
-                index = bisect.bisect_left([p[0] for p in self.points], timestamp)
-                self.points.insert(index, (timestamp, value))
+                self.buffer[timestamp] = value
+                if len(self.buffer) > 100:
+                    self._merge_buffer()
+    def _merge_buffer(self):
+        for ts, value in self.buffer.items():
+            index = bisect.bisect_left([p[0] for p in self.points], ts)
+            self.points.insert(index, (ts, value))
+        self.buffer.clear()
 
     def get_latest_before_or_equal(self, timestamp):
         with self.lock:
+            self._merge_buffer()
             if not self.points:
                 return None
             index = bisect.bisect_right([p[0] for p in self.points], timestamp) - 1

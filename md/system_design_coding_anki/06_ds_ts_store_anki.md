@@ -156,4 +156,4 @@ if __name__ == "__main__":
 
 ## How to create anki from this markdown file
 
-* mdanki 06_distributed_ts_store_anki.md 06_distributed_ts_store_anki.apkg --deck "Collaborated::CodeInterview::SystemDesign::06_DistributedTsStore"
+* mdanki 06_ts_store_anki.md 06_ts_store_anki.apkg --deck "Collaborated::CodeInterview::SystemDesign::06_ts_store"
