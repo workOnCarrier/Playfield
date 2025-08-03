@@ -167,3 +167,7 @@ if __name__ == "__main__":
     print(f"Snapshot buckets (first 10): {snapshot[:10]}")
 
 ```
+
+## How to create anki from this markdown file
+
+* mdanki 12_latency_analyzer.md 12_latency_analyzer.apkg --deck "Collaborated::CodeInterview::SystemDesign::12_LatencyAanalyzer"
