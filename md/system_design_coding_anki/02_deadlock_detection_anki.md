@@ -217,3 +217,9 @@ if __name__ == "__main__":
         print("✅ No deadlock detected.")
     else:
         print(f"⚠️ Deadlock detected! Processes: {' '.join(f'P{pid}' for pid in deadlocked)}")
+
+```
+
+## How to create anki from this markdown file
+
+* mdanki 02_deadlock_detection_anki.md 02_deadlock_detection_anki.apkg --deck "Tmp::CodeInterview::SystemDesign::02_DeadlockDetection"
