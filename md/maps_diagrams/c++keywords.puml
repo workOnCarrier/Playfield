@@ -1,0 +1,14 @@
+@startmindmap
+!define RECTANGLE_FONTNAME Arial
+!define DEFAULT_FONTNAME Arial
+* cppkeywords
+** vector 
+*** swap
+*** resize
+*** push_back
+*** erase
+*** emplace
+*** insert_range
+*** insert
+*** clear
+@endmindmap 

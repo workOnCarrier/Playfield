@@ -1,0 +1,24 @@
+@startuml
+
+object MobileApp
+object API_Gateway
+object Singpass
+object AuthService
+object AP_Notification
+object PR_ApplicationService
+object PaymentService
+object Database
+object DocService
+
+MobileApp --> API_Gateway
+API_Gateway --> AuthService
+API_Gateway --> Singpass
+AuthService --> AP_Notification
+AuthService --> PR_ApplicationService
+AuthService --> PaymentService
+
+AP_Notification --> Database
+PR_ApplicationService --> Database
+PaymentService --> Database
+Database --> DocService
+@enduml
