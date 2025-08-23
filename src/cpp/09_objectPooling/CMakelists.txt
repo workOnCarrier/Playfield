@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.22)
+
+project(OBPOOL LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set (OBPOOL_SRC test.cpp)
+add_executable(objpool ${OBPOOL_SRC})
+
+set (OBPOOLLOCKFREE_SRC test_lfop.cpp)
+add_executable(objpool_lf ${OBPOOLLOCKFREE_SRC})
+
+set (POOLALLOC_SRC test_poolAllocator.cpp)
+add_executable(poolAlloc ${POOLALLOC_SRC})

@@ -1,4 +1,4 @@
-@startuml
+@startuml PR_Application_SystemDesign
 
 object MobileApp
 object API_Gateway
@@ -13,6 +13,7 @@ object DocService
 MobileApp --> API_Gateway
 API_Gateway --> AuthService
 API_Gateway --> Singpass
+Singpass --> API_Gateway 
 AuthService --> AP_Notification
 AuthService --> PR_ApplicationService
 AuthService --> PaymentService
